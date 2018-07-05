@@ -5,12 +5,14 @@
 
 #include "HashMap.h"
 #include "HashMapNode.h"
+#include "HashMapAlgos.h"
 
 using namespace std;
 
 int main()
 {
-    HashMap *map = new HashMap(default_compare, default_hash);
+    //HashMap *map = new HashMap(default_compare, hash_algos::bkdr_hash);
+    HashMap *map = new HashMap(default_compare, hash_algos::default_hash);
     std::string *key1 = new std::string("asd");
     std::string *key2 = new std::string("fgh");
     std::string *key3 = new std::string("jkl");
@@ -28,10 +30,11 @@ int main()
     map->setNode(*key3, *val3);
     map->setNode(*key4, *val4);
     map->setNode(*key5, *val5);
+
     std::cout << map->getData("asd") << std::endl;
     std::cout << map->getData("fgh") << std::endl;
     std::cout << map->getData("jkl") << std::endl;
-    std::cout << map->getData("omgomg") << std::endl;
+    //std::cout << map->getData("omgomg") << std::endl;
 
     HashMapNode *node1 = map->getNode("asd");
     HashMapNode *node2 = map->getNode("fgh");

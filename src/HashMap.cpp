@@ -6,33 +6,15 @@
 #include <iostream>
 
 #include "HashMapNode.h"
+#include "HashMapAlgos.h"
 
 int default_compare(std::string a, std::string b) {
     return a == b;
 }
 
-uint32_t default_hash(std::string key) {
-    size_t len = key.size();
-    uint32_t hash = 0;
-    uint32_t i = 0;
-
-    for (hash = i = 0; i < len; ++i) {
-        hash += key[i];
-        hash += (hash << 10);
-        hash ^= (hash >> 6);
-    }
-
-    hash += (hash << 3);
-    hash ^= (hash >> 11);
-    hash += (hash << 15);
-
-    return hash;
-
-}
-
 HashMap::HashMap(Hashmap_compare compare, Hashmap_hash hash){
     this->compare = compare == NULL ? default_compare : compare;
-    this->hash    = hash    == NULL ? default_hash : hash;
+    this->hash    = hash    == NULL ? hash_algos::default_hash : hash;
     this->buckets = new HashMapNode[DEFAULT_NUMBER_OF_BUCKETS]();
 }
 
@@ -88,6 +70,19 @@ HashMapNode* HashMap::getNode(std::string key) {
 std::string HashMap::getData(std::string key) {
     uint32_t hash = 0;
     HashMapNode *bucket = this->findBucket(key, &hash);
+
+    try {
+
+        if (key.empty()) {
+            throw new std::logic_error("The key you searched for shouldn't be empty");
+        }
+
+        if (bucket->key.empty() && bucket->hash == 0) {
+            throw new std::logic_error("There isn't an element with such a key!");
+        }
+    } catch (std::logic_error& error) {
+        std::cerr << error.what() << std::endl;
+    }
     std::string data = bucket->data;
 
     return data;
