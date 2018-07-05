@@ -40,6 +40,9 @@ int main()
     HashMapNode *node2 = map->getNode("fgh");
     HashMapNode *node3 = map->getNode("jkl");
 
+    map->deleteNode("asd");
+    std::cout << map->getData("asd") << std::endl;
+
     std::cout << node1->hash << std::endl;
     std::cout << node2->hash << std::endl;
     std::cout << node3->hash << std::endl;

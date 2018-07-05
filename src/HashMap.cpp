@@ -72,7 +72,6 @@ std::string HashMap::getData(std::string key) {
     HashMapNode *bucket = this->findBucket(key, &hash);
 
     try {
-
         if (key.empty()) {
             throw new std::logic_error("The key you searched for shouldn't be empty");
         }
@@ -104,8 +103,13 @@ int HashMap::traverse(Hashmap_traverse_cb traverse_cb) {
     return 0;
 }
 
-std::string deleteNode(std::string key) {
+void HashMap::deleteNode(std::string key) {
+    uint32_t hash = 0;
+    HashMapNode *bucket = this->findBucket(key, &hash);
 
+    bucket->key = "";
+    bucket->data = "";
+    bucket->hash = 0;
 }
 
 HashMap::~HashMap() {

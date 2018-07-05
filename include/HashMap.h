@@ -26,7 +26,7 @@ class HashMap
         HashMapNode* getNode(std::string key);
         std::string getData(std::string key);
         int traverse(Hashmap_traverse_cb traverse_cb);
-        std::string deleteNode(std::string key);
+        void deleteNode(std::string key);
         ~HashMap();
 };
 
