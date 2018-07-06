@@ -14,6 +14,9 @@ namespace hash_algos {
     uint32_t js_hash(std::string data);
     uint32_t elf_hash(std::string data);
     uint32_t bkdr_hash(std::string data);
+    uint32_t rs_hash(std::string data);
+    uint32_t pjw_hash(std::string data);
+    uint32_t dek_hash(std::string data);
 };
 
 #endif // HASHMAPALGOS_H_INCLUDED
