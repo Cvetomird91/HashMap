@@ -128,4 +128,52 @@ namespace hash_algos {
         return hash;
     }
 
+    uint32_t rs_hash(std::string data) {
+        uint32_t b = 378551;
+        uint32_t a = 63689;
+        uint32_t hash = 0;
+        uint32_t i = 0;
+
+        for (i = 0; i < data.length(); ++i) {
+            hash = hash * a + (int)data.at(i);
+            a    = a * b;
+        }
+
+        return hash;
+    }
+
+    uint32_t pjw_hash(std::string data) {
+        const uint32_t BitsInUnsignedInt = (uint32_t)(sizeof(uint32_t) * 8);
+        const uint32_t ThreeQuarters     = (uint32_t)((BitsInUnsignedInt  * 3) / 4);
+        const uint32_t OneEighth         = (uint32_t)(BitsInUnsignedInt / 8);
+        const uint32_t HighBits          =
+                      (uint32_t)(0xFFFFFFFF) << (BitsInUnsignedInt - OneEighth);
+
+        uint32_t hash = 0;
+        uint32_t test = 0;
+        uint32_t i    = 0;
+
+        for (i = 0; i < data.length(); ++i) {
+            hash = (hash << OneEighth) + data[i];
+
+            if ((test = hash & HighBits) != 0) {
+                    hash = (( hash ^ (test >> ThreeQuarters)) & (~HighBits));
+            }
+        }
+
+        return hash;
+    }
+
+    uint32_t dek_hash(std::string data) {
+        uint32_t hash = data.length();
+        uint32_t i        = 0;
+
+        for (i = 0; i < data.length(); ++i) {
+            hash = ((hash << 5) ^ (hash >> 27)) ^ (int)data[i];
+        }
+
+        return hash;
+
+    }
+
 };
