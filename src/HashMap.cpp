@@ -18,6 +18,11 @@ HashMap::HashMap(Hashmap_compare compare, Hashmap_hash hash){
     this->buckets = new HashMapNode[DEFAULT_NUMBER_OF_BUCKETS]();
 }
 
+HashMap::HashMap()
+{
+
+}
+
 HashMapNode* HashMap::findBucket(std::string key, uint32_t *hash_out) {
     uint32_t hash = this->hash(key);
     int bucket_n = hash % DEFAULT_NUMBER_OF_BUCKETS;
@@ -26,11 +31,6 @@ HashMapNode* HashMap::findBucket(std::string key, uint32_t *hash_out) {
     HashMapNode *bucket = &this->buckets[bucket_n];
 
     return bucket;
-}
-
-HashMap::HashMap()
-{
-
 }
 
 void HashMap::setNode(std::string key, std::string data) {
