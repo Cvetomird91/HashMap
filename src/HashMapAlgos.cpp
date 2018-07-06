@@ -77,8 +77,8 @@ namespace hash_algos {
         uint32_t hash = 0;
         unsigned int i = 0;
 
-        for (i = 0; data.length(); i++) {
-            hash += data[i];
+        for (i = 0; i < data.length(); i++) {
+            hash += (int)data.at(i);
         }
 
         return hash;
