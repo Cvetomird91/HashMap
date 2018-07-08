@@ -20,8 +20,8 @@ HashMap::HashMap(Hashmap_compare compare, Hashmap_hash hash){
 
 HashMap::HashMap()
 {
-	this->compare = default_compare;
-	this->hash 	  = hash_algos::default_hash;
+    this->compare = default_compare;
+    this->hash 	  = hash_algos::default_hash;
     this->buckets = new HashMapNode[DEFAULT_NUMBER_OF_BUCKETS]();
 }
 
