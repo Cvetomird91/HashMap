@@ -20,7 +20,9 @@ HashMap::HashMap(Hashmap_compare compare, Hashmap_hash hash){
 
 HashMap::HashMap()
 {
-
+	this->compare = default_compare;
+	this->hash 	  = hash_algos::default_hash;
+    this->buckets = new HashMapNode[DEFAULT_NUMBER_OF_BUCKETS]();
 }
 
 HashMapNode* HashMap::findBucket(std::string key, uint32_t *hash_out) {
