@@ -84,9 +84,8 @@ std::string HashMap::getData(std::string key) {
     } catch (std::logic_error& error) {
         std::cerr << error.what() << std::endl;
     }
-    std::string data = bucket->data;
 
-    return data;
+    return bucket->data;
 }
 
 int HashMap::traverse(Hashmap_traverse_cb traverse_cb) {

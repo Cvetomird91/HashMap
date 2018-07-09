@@ -67,6 +67,6 @@ void testAlgos() {
     }
 }
 
-void testSetNode() {
+void testSetNode(HashMap* map, std::string key, std::string value) {
 
 }
