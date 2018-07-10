@@ -9,6 +9,8 @@
 
 #define ALGOS_COUNT 11
 
+static int traverse_called = 0;
+
 uint32_t (*algos[])(std::string) = {
     hash_algos::default_hash,
     hash_algos::fnv1a_hash,
@@ -29,6 +31,11 @@ HashMap* createHashMap(Hashmap_compare compare, Hashmap_hash hash) {
 
     assert(hashmap != NULL && "Hashmap didn't instantiate properly");
     return hashmap;
+}
+
+int traverseCallback(HashMapNode* node) {
+    traverse_called++;
+    return 0;
 }
 
 std::string generateRandomString(int len) {
@@ -67,6 +74,28 @@ void testAlgos() {
     }
 }
 
-void testSetNode(HashMap* map, std::string key, std::string value) {
+int testGetSet(HashMap* map) {
+    for (int i = 0; i < DEFAULT_NUMBER_OF_BUCKETS; ++i) {
+        uint32_t hash;
+        std::string key = generateRandomString(5);
+        std::string data = generateRandomString(10);
 
+        hash = map->setNode(key, data);
+
+        HashMapNode* node = map->getNode(hash, key);
+
+        assert(node != NULL && "Node didn't set properly!");
+    }
+}
+
+int testTraverse(HashMap* map, Hashmap_traverse_cb traverse_cb) {
+    map->traverse(traverse_cb);
+}
+
+void fillHashmaps() {
+    for (int i = 0; i < ALGOS_COUNT; ++i) {
+        HashMap* map = new HashMap(default_compare, algos[i]);
+        testGetSet(map);
+        delete map;
+    }
 }

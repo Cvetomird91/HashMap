@@ -11,6 +11,10 @@
 HashMap* createHashMap(Hashmap_compare compare, Hashmap_hash hash);
 std::string generateRandomString(int len);
 void testAlgos();
-void testSetNode(HashMap* map, std::string key, std::string value);
+int testGetSet(HashMap* map);
+int testTraverse(HashMap* map, Hashmap_traverse_cb traverse_cb);
+int traverseCallback(HashMapNode* node);
+void testDeleteNode(HashMap* map);
+void fillHashmaps();
 
 #endif // HASHMAPTESTS_H_INCLUDED
