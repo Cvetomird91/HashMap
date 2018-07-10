@@ -17,23 +17,21 @@ class HashMap
     public:
         HashMap();
         HashMap(Hashmap_compare compare, Hashmap_hash hash);
-        void setNode(std::string key, std::string data);
+        uint32_t setNode(std::string key, std::string data);
         HashMapNode* getNode(uint32_t hash, std::string key);
         HashMapNode* getNode(std::string key);
         std::string getData(std::string key);
         int traverse(Hashmap_traverse_cb traverse_cb);
         void deleteNode(std::string key);
+        HashMapNode *buckets;
         ~HashMap();
 
     private:
         HashMapNode *findBucket(std::string key, uint32_t* hash_out);
         Hashmap_compare compare;
         Hashmap_hash    hash;
-        HashMapNode *buckets;
-
 };
 
 #endif // HASHMAP_H
 
 int default_compare(std::string a, std::string b);
-uint32_t default_hash(std::string key);

@@ -35,12 +35,14 @@ HashMapNode* HashMap::findBucket(std::string key, uint32_t *hash_out) {
     return bucket;
 }
 
-void HashMap::setNode(std::string key, std::string data) {
+uint32_t HashMap::setNode(std::string key, std::string data) {
     uint32_t hash = 0;
     HashMapNode *bucket = this->findBucket(key, &hash);
     bucket->hash = hash;
     bucket->key = key;
     bucket->data = data;
+
+    return hash;
 }
 
 HashMapNode* HashMap::getNode(uint32_t hash, std::string key) {
