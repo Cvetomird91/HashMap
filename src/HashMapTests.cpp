@@ -74,7 +74,7 @@ void testAlgos() {
     }
 }
 
-int testGetSet(HashMap* map) {
+void testGetSet(HashMap* map) {
     for (int i = 0; i < DEFAULT_NUMBER_OF_BUCKETS; ++i) {
         uint32_t hash;
         std::string key = generateRandomString(5);
@@ -88,7 +88,7 @@ int testGetSet(HashMap* map) {
     }
 }
 
-int testTraverse(HashMap* map, Hashmap_traverse_cb traverse_cb) {
+void testTraverse(HashMap* map, Hashmap_traverse_cb traverse_cb) {
     map->traverse(traverse_cb);
 }
 
