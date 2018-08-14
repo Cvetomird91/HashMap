@@ -11,7 +11,7 @@
 
 static int traverse_called = 0;
 
-uint32_t (*algos[])(std::string) = {
+uint32_t (*algos[])(const std::string&) = {
     hash_algos::default_hash,
     hash_algos::fnv1a_hash,
     hash_algos::adler32_hash,

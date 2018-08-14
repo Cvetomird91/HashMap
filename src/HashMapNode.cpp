@@ -1,6 +1,6 @@
 #include "HashMapNode.h"
 
-HashMapNode::HashMapNode(int hash, std::string key, std::string data)
+HashMapNode::HashMapNode(int hash, const std::string &key, const std::string &data)
 {
     this->key = key;
     this->data = data;

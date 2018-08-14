@@ -6,7 +6,7 @@
 class HashMapNode
 {
     public:
-        HashMapNode(int hash, std::string key, std::string data);
+        HashMapNode(int hash, const std::string &key, const std::string &data);
         HashMapNode();
         std::string key;
         std::string data;

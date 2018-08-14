@@ -9,7 +9,7 @@ const int MOD_ADLER = 65521;
 
 namespace hash_algos {
 
-    uint32_t default_hash(std::string data) {
+    uint32_t default_hash(const std::string &data) {
         size_t len = data.length();
         uint32_t hash = 0;
         uint32_t i = 0;
@@ -27,7 +27,7 @@ namespace hash_algos {
         return hash;
     }
 
-    uint32_t fnv1a_hash(std::string data) {
+    uint32_t fnv1a_hash(const std::string &data) {
         uint32_t hash = FNV_OFFSET_BASIS;
         unsigned int i = 0;
 
@@ -39,7 +39,7 @@ namespace hash_algos {
         return hash;
     }
 
-    uint32_t adler32_hash(std::string data) {
+    uint32_t adler32_hash(const std::string &data) {
         uint32_t a = 1, b = 0;
         unsigned int i = 0;
 
@@ -51,7 +51,7 @@ namespace hash_algos {
         return (b << 16) | a;
     }
 
-    uint32_t djb_hash(std::string data) {
+    uint32_t djb_hash(const std::string &data) {
         uint32_t hash = 5381;
         unsigned int i = 0;
 
@@ -62,7 +62,7 @@ namespace hash_algos {
         return hash;
     }
 
-    uint32_t sdbm_hash(std::string data) {
+    uint32_t sdbm_hash(const std::string &data) {
         uint32_t hash = 0;
         unsigned int i = 0;
 
@@ -73,7 +73,7 @@ namespace hash_algos {
         return hash;
     }
 
-    uint32_t lose_hash(std::string data) {
+    uint32_t lose_hash(const std::string &data) {
         uint32_t hash = 0;
         unsigned int i = 0;
 
@@ -84,7 +84,7 @@ namespace hash_algos {
         return hash;
     }
 
-    uint32_t js_hash(std::string data) {
+    uint32_t js_hash(const std::string &data) {
         uint32_t hash = 1315423911;
         unsigned int i = 0;
 
@@ -96,7 +96,7 @@ namespace hash_algos {
         return hash;
     }
 
-    uint32_t elf_hash(std::string data) {
+    uint32_t elf_hash(const std::string &data) {
         uint32_t hash = 0;
         unsigned int x = 0;
         unsigned int i = 0;
@@ -116,7 +116,7 @@ namespace hash_algos {
         return hash;
     }
 
-    uint32_t bkdr_hash(std::string data) {
+    uint32_t bkdr_hash(const std::string &data) {
         uint32_t seed = 131;
         uint32_t hash = 0;
         uint32_t i    = 0;
@@ -128,7 +128,7 @@ namespace hash_algos {
         return hash;
     }
 
-    uint32_t rs_hash(std::string data) {
+    uint32_t rs_hash(const std::string &data) {
         uint32_t b = 378551;
         uint32_t a = 63689;
         uint32_t hash = 0;
@@ -142,7 +142,7 @@ namespace hash_algos {
         return hash;
     }
 
-    uint32_t pjw_hash(std::string data) {
+    uint32_t pjw_hash(const std::string &data) {
         const uint32_t BitsInUnsignedInt = (uint32_t)(sizeof(uint32_t) * 8);
         const uint32_t ThreeQuarters     = (uint32_t)((BitsInUnsignedInt  * 3) / 4);
         const uint32_t OneEighth         = (uint32_t)(BitsInUnsignedInt / 8);
@@ -164,7 +164,7 @@ namespace hash_algos {
         return hash;
     }
 
-    uint32_t dek_hash(std::string data) {
+    uint32_t dek_hash(const std::string &data) {
         uint32_t hash = data.length();
         uint32_t i        = 0;
 

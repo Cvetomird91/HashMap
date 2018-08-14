@@ -8,7 +8,7 @@
 #include "HashMapNode.h"
 #include "HashMapAlgos.h"
 
-int default_compare(std::string a, std::string b) {
+int default_compare(const std::string &a, const std::string &b) {
     return a == b;
 }
 
@@ -25,7 +25,7 @@ HashMap::HashMap()
     this->buckets = new HashMapNode[DEFAULT_NUMBER_OF_BUCKETS]();
 }
 
-HashMapNode* HashMap::findBucket(std::string key, uint32_t *hash_out) {
+HashMapNode* HashMap::findBucket(const std::string &key, uint32_t *hash_out) {
     uint32_t hash = this->hash(key);
     int bucket_n = hash % DEFAULT_NUMBER_OF_BUCKETS;
     *hash_out = hash;
@@ -35,7 +35,7 @@ HashMapNode* HashMap::findBucket(std::string key, uint32_t *hash_out) {
     return bucket;
 }
 
-uint32_t HashMap::setNode(std::string key, std::string data) {
+uint32_t HashMap::setNode(const std::string &key, const std::string &data) {
     uint32_t hash = 0;
     HashMapNode *bucket = this->findBucket(key, &hash);
     bucket->hash = hash;
@@ -45,7 +45,7 @@ uint32_t HashMap::setNode(std::string key, std::string data) {
     return hash;
 }
 
-HashMapNode* HashMap::getNode(uint32_t hash, std::string key) {
+HashMapNode* HashMap::getNode(uint32_t hash, const std::string &key) {
     unsigned int i = 0;
 
     for (i = 0; i < DEFAULT_NUMBER_OF_BUCKETS; ++i) {
@@ -58,7 +58,7 @@ HashMapNode* HashMap::getNode(uint32_t hash, std::string key) {
     return NULL;
 }
 
-HashMapNode* HashMap::getNode(std::string key) {
+HashMapNode* HashMap::getNode(const std::string &key) {
     unsigned int i = 0;
 
     for (i = 0; i < DEFAULT_NUMBER_OF_BUCKETS; ++i) {
@@ -71,7 +71,7 @@ HashMapNode* HashMap::getNode(std::string key) {
     return NULL;
 }
 
-std::string HashMap::getData(std::string key) {
+std::string HashMap::getData(const std::string &key) {
     uint32_t hash = 0;
     HashMapNode *bucket = this->findBucket(key, &hash);
 
@@ -106,7 +106,7 @@ int HashMap::traverse(Hashmap_traverse_cb traverse_cb) {
     return 0;
 }
 
-void HashMap::deleteNode(std::string key) {
+void HashMap::deleteNode(const std::string &key) {
     uint32_t hash = 0;
     HashMapNode *bucket = this->findBucket(key, &hash);
 
